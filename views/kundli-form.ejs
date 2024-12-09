@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kundali Maker</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat';
+    }
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    #container{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    #form{
+        width: 30%;
+        height: auto;
+        position: absolute;
+         background:linear-gradient(to right,rgba(250, 29, 29, 0.897),#ff6d19e5);
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%,-50%);
+        padding: 20px 50px;
+        color: white;
+    }
+   
+   #form form input{
+        width: 100%;
+        height:40px ;
+        margin-top: 5px;
+        border: none;
+        border-radius: 2px;
+        padding: 5px;
+    }
+    button{
+        padding: 10px;
+       border: none;
+       background-color: white;
+    }
+    #nav a{
+        text-decoration: none;
+        color: white;
+        font-weight: 300;
+        font-size: 15px;
+    }
+</style>
+<body>
+    <div id="container">
+        <!-- navbar -->
+        <div style="width: 100%;height: 60px;background:linear-gradient(to right,rgba(250, 29, 29, 0.897),#ff6d19e5);display: flex;justify-content: space-between;align-items: center; padding: 0px 40px;margin-top: 1px;" id="nav">
+            <h5><a href="/">Home</a></h5>
+            <h5><a href="">Muhurat</a></h5>
+            <h5><a href="">Horoscope</a></h5>
+            <h5><a href="/blogs">Blogs</a></h5>
+            <h5><a href="/">Log-out</a></h5>
+        </div>
+        <h1 style="font-size: 50px;text-align: center;font-weight: 500;margin-top: 5px;">Kundli Maker</h1>
+        <p style="text-align: center;font-weight: 400;">View or download your kundli with just few details!</p>
+        <!-- views/kundli-form.ejs -->
+<div id="form">
+<form action="/kundli" method="post">
+    <label>Name</label><br>
+    <input type="text" name="name"><br>
+  <br>
+    <label>Birth Date:</label><br>
+    <input type="text" name="birthdate"><br>
+  <br>
+    <label>Birth Time:</label><br>
+    <input type="text" name="birthtime"><br>
+    <br>
+    <label>City:</label><br>
+    <input type="text" name="city"><br>
+    <br>
+    <button type="submit">Get your kundli</button>
+  </form>
+</div>
+    </div>
+</body>
+</html>

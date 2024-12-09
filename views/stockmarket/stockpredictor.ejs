@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+
+    }
+    table th{
+        width: 10%;
+        border: 1px solid black;
+        margin: 10px 0px;
+        border-right: 1px solid black;
+    }
+    table td{
+        text-align: center;
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <table>
+        <tr>
+            <th>Stock Symbol</th>
+            <th>Stock Open</th>
+            <th>Stock Last Update Time</th>
+            <th>Stock Day High</th>
+            <th>Stock Day Low</th>
+            <th>Stock Last Price</th>
+            <th>Stock Previous Close</th>
+            <th>Stock Change</th>
+            <th>Stock Total Traded Volume</th>
+            <th>Stock Total Traded Value</th>
+            <th>Stock Year High</th>
+            <th>Stock Year Low</th>
+            <th>Buy Predictability</th>
+        </tr>
+
+       <% stocks.forEach(stock => { %>
+        <tr> 
+          <td><%= stock.symbol %></td>
+          <td><%= stock.open %></td>
+          <td><%= stock.lastUpdateTime %></td>
+          <td><%= stock.dayHigh %></td>
+          <td><%= stock.dayLow %></td>
+          <td><%= stock.lastPrice %></td>
+          <td><%= stock.previousClose %></td>
+          <td><%= stock.change %></td>
+          <td><%= stock.totalTradedVolume %></td>
+          <td><%= stock.totalTradedValue %></td>
+          <td><%= stock.yearHigh %></td>
+          <td><%= stock.yearLow %></td> 
+          <% function scoreStock(stock) { %>
+            let score=0;
+            <% if(stock.perChange365d>0){ %>
+                score+=2;
+           <% } %>
+            <% if(stock.perChange30d>0){ %>
+                score+=1;
+          <% } %>  
+          <% if (stock.lastPrice/stock.dayLow <1.02) { %>
+            score+=1;
+         <% } %>
+       return score;
+         <% } %>
+        <td><%= stock.score %></td>
+        </tr>
+      <% }); %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagittarius</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat';
+    }
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    #container{
+        width: 100%;
+        height: 100%;
+        background-image: url('../images/bgsparkle.jpeg');
+        padding: 10px 100px;
+        color: white;
+        position: relative;
+    }
+    #boxes{
+        width: 90%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.048);
+        margin: auto;
+        border-radius: 20px;
+    }
+    .box #imgbox{
+width: 250px;
+height: 250px;
+border-radius: 50%;
+background-color: rgba(255, 255, 255, 0.151);
+position: absolute;
+left: 50%;
+top:10%;
+transform: translate(-50%,-10%);
+}
+#imgbox img{
+        width: 245px;
+        height: 245px;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .box #contbox{
+        width: 80%;
+        height: auto;
+        padding: 10px 0px;
+        /* background-color: rgba(255, 255, 255, 0.089); */
+        position: absolute;
+        left: 50%;
+       top: 50%;
+        transform: translate(-50%,-20%);
+        margin-top: 20px;
+        padding:10px 50px;
+    }
+    #contbox h3{
+        font-size: 40px;
+        font-weight: 500;
+        /* font-style: italic; */
+        /* text-decoration: underline; */
+        text-align: center;
+    }
+    #contbox p{
+        margin-top: 10px;
+        font-style: italic;
+        font-size: 20px;
+        font-weight: 300;
+        text-align:justify;
+    }
+</style>
+<body>
+  <div id="container">
+    <div id="boxes">
+    <div class="box">
+        <div id="imgbox">
+            <img src="https://i.pinimg.com/236x/f9/ae/b2/f9aeb23eb5ec12dcfe367f53b5691247.jpg" alt="">
+        </div>
+    <div id="contbox">
+        <h3>Sagittarius</h3>
+        <p><%= resp.description %></p>
+        <p><%= resp.compatibility %></p>
+        <p><%= resp.mood %></p>
+        <p><%= resp.color %></p>
+        <p><%= resp.luckynumber %></p>
+    </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

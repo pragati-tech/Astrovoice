@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarti Upasana</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat';
+    }
+    html, body{
+        width: 100%;
+        height: 100%;
+    }
+    #container{
+        width: 100%;
+        height: auto;
+        /* background-color: red; */
+        padding: 10px 100px;
+        background-image: url('../images/bgsparkle.jpeg');
+    }
+    #container2{
+        width: 100%;
+        height: 100%;
+        background-color: aqua;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        background: rgba(255, 255, 255, 0.856);backdrop-filter: blur(20px); box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1);
+    }
+    #panel1{
+        width: 60%;
+    }
+    table{
+        width: 100%;
+        padding: 10px 0px;
+        border-spacing: 50px 0px;
+    }
+    td{
+        text-align: center;
+        padding: 10px;
+    }
+
+</style>
+<body>
+    <div id="pdf-main-container">
+        <div id="pdf-container"></div>
+        <div id="pdf-loader">Loading...</div>
+      </div>
+      <script src="/node_modules/pdfjs-dist/build/pdf.js"></script>
+      <script>
+        // Get reference to container element
+const pdfContainer = document.getElementById('pdf-container');
+
+// Display loader  
+const loader = document.getElementById('pdf-loader');
+loader.style.display = 'block';
+
+// Load PDF document
+let pdfDoc = null,
+  pageNum = 1,
+  pageRendering = false,
+  pageNumPending = null;
+
+// Get document reference
+pdfjsLib.getDocument(atob('<%- File %>')).promise.then(pdfDoc_ => {
+
+  pdfDoc = pdfDoc_;
+    
+  // Initial load of first page
+  renderPage(pageNum);
+
+  // Load pages on scroll
+  window.onscroll = function() {
+    if (pageRendering) return;
+
+    if (isPageLoaded(pageNumPending)) {
+      renderPage(pageNumPending);
+      pageNumPending = null;
+    } else {
+      pageNumPending = pageNum + 1;
+    }
+  }
+
+  function isPageLoaded(page) {
+    return page <= pdfDoc.numPages;
+  }
+
+  function renderPage(pageNumber) {
+    pageRendering = true;
+    // Use built-in PDF.js function to render page
+    pdfDoc.getPage(pageNumber).then(page => {
+      var viewport = page.getViewport({scale: 1.5});
+
+      // Set canvas height and width to viewport size
+      var canvas = document.getElementById('pdf-canvas');
+      var context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      // Render PDF page
+      page.render({canvasContext: context, viewport: viewport}).promise.then(() => {
+        pageRendering = false;
+        loader.style.display = 'none';
+      });
+
+      pageNum++;
+    });
+  }
+
+});
+      </script>
+</body>
+</html>
